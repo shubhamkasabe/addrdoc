@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address-Correction — Required Documents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --primary-color: #667eea;
+            --primary-hover: #5a6fd8;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(226, 232, 240, 0.8);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --blur-radius: 8px;
+            --card-border-radius: 20px;
+            --modal-border-radius: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(1deg); }
+        }
+
+        #app {
+            min-height: 100vh;
+            transition: filter var(--transition);
+            position: relative;
+        }
+
+        #app.blurred {
+            filter: blur(var(--blur-radius)) brightness(0.6);
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-border-radius);
+            padding: 2.5rem 2rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 280px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform var(--transition);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+
+        .card:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3), var(--shadow-xl);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card[data-type="residential"] .card-icon {
+            background: var(--primary-gradient);
+        }
+
+        .card[data-type="commercial"] .card-icon {
+            background: var(--secondary-gradient);
+        }
+
+        .card[data-type="industrial"] .card-icon {
+            background: var(--success-gradient);
+        }
+
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            border-radius: inherit;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .card-stats {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition);
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--modal-border-radius);
+            padding: 2.5rem;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.8) translateY(20px);
+            transition: all var(--transition);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .modal-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin: 0;
+            padding-right: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-btn {
+            background: rgba(102, 126, 234, 0.1);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all var(--transition);
+            line-height: 1;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .close-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .close-btn:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .documents-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        .documents-list h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            background: var(--card-bg);
+            z-index: 10;
+        }
+
+        .documents-list h3:not(:first-child) {
+            margin-top: 2rem;
+        }
+
+        .documents-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: all var(--transition);
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .documents-list li:nth-child(1) { animation-delay: 0.1s; }
+        .documents-list li:nth-child(2) { animation-delay: 0.2s; }
+        .documents-list li:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .documents-list li:last-child {
+            border-bottom: none;
+        }
+
+        .documents-list li::before {
+            content: "✓";
+            color: white;
+            background: var(--primary-gradient);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .documents-list li:hover {
+            background: rgba(102, 126, 234, 0.05);
+            margin: 0 -1rem;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .no-docs-message {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Custom scrollbar for modal */
+        .modal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal::-webkit-scrollbar-track {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 4px;
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        .modal::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card {
+                min-height: 240px;
+                padding: 2rem 1.5rem;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .modal {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+                max-height: 85vh;
+                max-width: calc(100vw - 2rem);
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .documents-list h3 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 1.5rem;
+            }
+
+            .modal {
+                padding: 1.5rem 1rem;
+                max-height: 80vh;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+
+            .documents-list h3 {
+                font-size: 0.95rem;
+            }
+
+            .documents-list li {
+                font-size: 0.9rem;
+                padding: 0.75rem 0;
+            }
+        }
+
+        /* Loading animation for cards */
+        .card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main id="app">
+        <header>
+            <h1>Address-Correction — Required Documents</h1>
+        </header>
+        
+        <div class="container">
+            <div class="cards-grid">
+                <button class="card" data-type="registeredSociety">
+                    <div class="card-icon">🏢</div>
+                    <h3>Registered Society</h3>
+                    <p>Documents required for registered society address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+                
+                <button class="card" data-type="unregisteredSociety">
+                    <div class="card-icon">🏘️</div>
+                    <h3>Unregistered Society</h3>
+                    <p>Documents required for unregistered society address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+                
+                <button class="card" data-type="rentalPagadi">
+                    <div class="card-icon">🏠</div>
+                    <h3>Rental / Pagadi</h3>
+                    <p>Documents required for rental and pagadi address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+
+                <button class="card" data-type="shackSlumChawl">
+                    <div class="card-icon">🏚️</div>
+                    <h3>Shack / Slum / Chawl</h3>
+                    <p>Documents required for shack, slum, and chawl address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+
+                <button class="card" data-type="mhada">
+                    <div class="card-icon">🏗️</div>
+                    <h3>MHADA</h3>
+                    <p>Documents required for MHADA address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+
+                <button class="card" data-type="quarters">
+                    <div class="card-icon">🏢</div>
+                    <h3>Quarters</h3>
+                    <p>Documents required for quarters address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+
+                <button class="card" data-type="sraBuilding">
+                    <div class="card-icon">🏢</div>
+                    <h3>SRA Building</h3>
+                    <p>Documents required for SRA building address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+
+                <button class="card" data-type="shopName">
+                    <div class="card-icon">🏪</div>
+                    <h3>Shop Name</h3>
+                    <p>Documents required for shop name additions</p>
+                    <div class="card-stats">1 correction type</div>
+                </button>
+
+                <button class="card" data-type="ownershipBungalow">
+                    <div class="card-icon">🏡</div>
+                    <h3>Ownership Bungalow</h3>
+                    <p>Documents required for ownership bungalow address corrections</p>
+                    <div class="card-stats">4 correction types</div>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay" tabindex="-1">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Documents</h2>
+                <button class="close-btn" id="closeBtn" aria-label="Close modal">×</button>
+            </div>
+            <ul class="documents-list" id="documentsList">
+                <!-- Documents will be injected here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        (() => {
+            const DOCS = {
+                registeredSociety: {
+                    "Flat no. correction": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp"
+                    ],
+                    "Wing / plot / CTS / building / society-name correction": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp"
+                    ],
+                    "Area / street-name correction": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp",
+                        "Aadhaar Card",
+                        "Ration card with same address"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                unregisteredSociety: {
+                    "Flat no. correction": [
+                        "Index II"
+                    ],
+                    "Wing / plot / CTS / building / society-name correction": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp"
+                    ],
+                    "Area / street-name correction": [
+                        "Index II",
+                        "possession letter",
+                        "Aadhaar Card",
+                        "Ration card with same address"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                rentalPagadi: {
+                    "Correction in room no.": [
+                        "Latest rent bill",
+                        "Landlord NOC with self-attested ID proof"
+                    ],
+                    "Chawl / plot / CTS / building-name correction": [
+                        "Latest rent bill",
+                        "Landlord NOC with self-attested ID proof"
+                    ],
+                    "Area / street-name correction (any ONE)": [
+                        "Latest rent bill",
+                        "Landlord NOC with self-attested ID proof",
+                        "Aadhaar Card",
+                        "Ration card with same address"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                shackSlumChawl: {
+                    "Correction in room / plot no.": [
+                        "Photo-pass from competent authority",
+                        "Assessment-tax bill",
+                        "Ration card with same address"
+                    ],
+                    "Chawl-name / survey-no. correction": [
+                        "Photo-pass from competent authority",
+                        "Assessment-tax bill",
+                        "Ration card with same address"
+                    ],
+                    "Area / street-name correction": [
+                        "Photo-pass from competent authority",
+                        "Assessment-tax bill",
+                        "Ration card with same address",
+                        "Aadhaar Card"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                mhada: {
+                    "Correction in room no. (any TWO)": [
+                        "Mhada allotment letter",
+                        "Latest rent bill",
+                        "Mhada possession letter"
+                    ],
+                    "Plot / chawl / CTS / building-name correction (any TWO)": [
+                        "Mhada allotment letter",
+                        "Latest rent bill",
+                        "Mhada possession letter",
+                        "Ration card with same address"
+                    ],
+                    "Area / street-name correction (any ONE)": [
+                        "Mhada allotment letter",
+                        "Latest rent bill",
+                        "Mhada possession letter",
+                        "Aadhaar Card",
+                        "Ration card with same address"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                quarters: {
+                    "Correction in room no. (any ONE)": [
+                        "Allotment letter",
+                        "Letter from quarters-allotment authority"
+                    ],
+                    "Chawl-name / plot / building-name correction (any ONE)": [
+                        "Allotment letter",
+                        "Letter from quarters-allotment authority",
+                        "Ration Card"
+                    ],
+                    "Area / street-name correction (any ONE)": [
+                        "Allotment letter",
+                        "Letter from quarters-allotment authority",
+                        "Aadhaar Card",
+                        "Ration Card"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                sraBuilding: {
+                    "Correction in room no. (any ONE)": [
+                        "SRA allotment letter",
+                        "Transfer letter issued by concerned authority"
+                    ],
+                    "Wing / plot / CTS / building-name correction (any ONE)": [
+                        "SRA allotment letter",
+                        "Transfer letter issued by concerned authority"
+                    ],
+                    "Area / street-name correction (any ONE)": [
+                        "SRA allotment letter",
+                        "Transfer letter issued by concerned authority",
+                        "Ration card",
+                        "Aadhaar Card"
+                    ],
+                    "Landmark / PIN-code correction": []
+                },
+
+                shopName: {
+                    "Addition of shop name in address (any ONE)": [
+                        "Valid Gumasta licence",
+                        "Intimation letter issued by authorities",
+                        "Udyam Aadhaar"
+                    ]
+                },
+
+                ownershipBungalow: {
+                    "Change bungalow name (any ONE)": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp",
+                        "Assessment-tax bill / Property card"
+                    ],
+                    "Plot / CTS / building-name / society-name correction (any ONE)": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp",
+                        "Assessment-tax bill / Property card"
+                    ],
+                    "Area / street-name correction (any ONE)": [
+                        "Index II",
+                        "Share certificate with flat number on applicant name",
+                        "Latest maintenance bill on applicant name",
+                        "Latest NOC from society on letter-head with society stamp",
+                        "Assessment-tax bill / Property card"
+                    ],
+                    "Landmark / PIN-code correction": []
+                }
+            };
+
+            // DOM elements
+            const app = document.getElementById('app');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const documentsList = document.getElementById('documentsList');
+            const closeBtn = document.getElementById('closeBtn');
+            const cards = document.querySelectorAll('.card');
+
+            // Store the triggering card for focus management
+            let triggeringCard = null;
+
+            // Add hover sound effect (optional)
+            function addHoverEffect() {
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-8px) scale(1.02)';
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0) scale(1)';
+                    });
+                });
+            }
+
+            // Open modal function with enhanced animations
+            function openModal(premiseType) {
+                const premiseData = DOCS[premiseType];
+                const title = `Documents for ${premiseType.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}`;
+                
+                // Update modal content
+                modalTitle.textContent = title;
+                documentsList.innerHTML = '';
+                
+                // Create correction type sections
+                Object.entries(premiseData).forEach(([correctionType, documents], sectionIndex) => {
+                    // Add correction type header
+                    const correctionHeader = document.createElement('h3');
+                    correctionHeader.textContent = correctionType;
+                    documentsList.appendChild(correctionHeader);
+                    
+                    if (documents.length === 0) {
+                        const noDocs = document.createElement('p');
+                        noDocs.textContent = 'No documents required';
+                        noDocs.className = 'no-docs-message';
+                        documentsList.appendChild(noDocs);
+                    } else {
+                        documents.forEach((doc, index) => {
+                            const li = document.createElement('li');
+                            li.textContent = doc;
+                            li.style.animationDelay = `${(sectionIndex * 0.2) + (index * 0.1)}s`;
+                            documentsList.appendChild(li);
+                        });
+                    }
+                });
+
+                // Show modal and add blur
+                modalOverlay.classList.add('active');
+                app.classList.add('blurred');
+                app.setAttribute('aria-hidden', 'true');
+                
+                // Focus management
+                modalOverlay.focus();
+            }
+
+            // Close modal function
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                app.classList.remove('blurred');
+                app.removeAttribute('aria-hidden');
+                
+                // Return focus to triggering card
+                if (triggeringCard) {
+                    triggeringCard.focus();
+                    triggeringCard = null;
+                }
+            }
+
+            // Event listeners for cards
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const premiseType = card.dataset.type;
+                    triggeringCard = card;
+                    openModal(premiseType);
+                });
+            });
+
+            // Close button event listener
+            closeBtn.addEventListener('click', closeModal);
+
+            // Overlay click event listener
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Keyboard event listeners for accessibility
+            modalOverlay.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // Focus trap for modal
+            modalOverlay.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusableElements = modalOverlay.querySelectorAll(
+                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                    );
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                }
+            });
+
+            // Initialize hover effects
+            addHoverEffect();
+
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe cards for scroll animations
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        })();
+    </script>
+</body>
+</html> 
